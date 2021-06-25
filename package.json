@@ -1,0 +1,24 @@
+{
+  "name": "to-do",
+  "version": "1.0.0",
+  "description": "",
+  "main": "list.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laubernal/to-do.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/laubernal/to-do/issues"
+  },
+  "homepage": "https://github.com/laubernal/to-do#readme",
+  "bin": {
+    "list": "list.js",
+    "add": "add.js"
+  }
+}
