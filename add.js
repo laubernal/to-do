@@ -2,17 +2,19 @@
 
 const { ToDoRepository } = require('./Repositories/ToDoRepository');
 const { ToDo } = require('./toDo');
+const { readCommandArg, uniqueId } = require('./utils');
+const { TO_DO_JSON } = require('./constants');
 
 class Add {
-    constructor(filename){
-        this.toDoRepo = new ToDoRepository(filename);
-        this.toDo = new ToDo('1', 'Hola');
+    constructor(){
+        this.toDoRepo = new ToDoRepository(TO_DO_JSON);
+        this.toDo = new ToDo(uniqueId(), readCommandArg());
 
-        this.toDoRepo.writeFile(this.toDo);
+        this.toDoRepo.save(this.toDo);
     }
 }
 
-new Add('to-do.json');
+new Add();
 
 
 // class Foo {

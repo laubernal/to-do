@@ -19,6 +19,7 @@
   "homepage": "https://github.com/laubernal/to-do#readme",
   "bin": {
     "list": "list.js",
-    "add": "add.js"
+    "add": "add.js",
+    "findWord": "find.js"
   }
 }
