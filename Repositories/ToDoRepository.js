@@ -1,5 +1,7 @@
 const fs = require('fs');
 
+const { ToDo } = require('../toDo');
+
 //save
 //findByID
 //update
@@ -22,7 +24,6 @@ class ToDoRepository {
   readFile() {
     try {
       const contents = JSON.parse(fs.readFileSync(this.filename));
-      console.log(contents);
       return contents;
     } catch (err) {
       throw new Error('Could not read the file');
@@ -32,7 +33,6 @@ class ToDoRepository {
   writeFile(toDo) {
     try {
       fs.writeFileSync(this.filename, JSON.stringify(toDo, null, 2));
-      console.log('File written successfully');
     } catch (err) {
       throw new Error('Could not write the file');
     }
@@ -60,24 +60,38 @@ class ToDoRepository {
     //         results.push(content);
     //     }
     // }
-
     // return results;
+  }
+
+  findByIndex(index) {
+    const contents = this.readFile();
+
+    return contents[index - 1];
+  }
+
+  update(index, newTitle) {
+    const id = this.findByIndex(index).id;
+
+    this.delete(index);
     
+    const toDoUpdated = new ToDo(id, newTitle);
+
+    this.save(toDoUpdated);
   }
 
-  update(id, newTitle) {
-    //get the full to do list (readFile)
-    //findById the to do you want to update (id received by arg)
-    //modify the title of the to do object with the new title received by arg
-    //writeFile
-  }
+  delete(index) {
+    const contents = this.readFile();
+    
+    const deleteToDo = this.findByIndex(index);
 
-  delete(id) {
-    //get the full to do list (readFile)
-    //findById the to do object you want to delete (id received by arg)
-    //delete the to do object
-    //get the full to do list (readFile)
-    //writeFile
+    const results = [];
+    for(const content of contents) {
+        if(content.id !== deleteToDo.id) {
+            results.push(content);
+        }
+    }
+
+    this.writeFile(results);
   }
 }
 

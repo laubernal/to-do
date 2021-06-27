@@ -1,10 +1,10 @@
 const crypto = require('crypto');
 
-const readCommandArg = () => {
+const readCommandArg = (index = 2) => {
     //receive the command arg
     //catch from [2] to [].length
     //return string
-    return process.argv.slice(2, process.argv.length).join(" ");
+    return process.argv.slice(index, process.argv.length).join(" ");
 }
 
 const uniqueId = () => {

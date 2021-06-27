@@ -20,6 +20,8 @@
   "bin": {
     "list": "list.js",
     "add": "add.js",
-    "findWord": "find.js"
+    "findWord": "find.js",
+    "update": "update.js",
+    "delete": "delete.js"
   }
 }
